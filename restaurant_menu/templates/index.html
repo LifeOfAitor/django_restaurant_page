@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Restaurant Menu</title>
-    </head>
-    <body>
-        <h1>Restaurant Menu:</h1>
-        {% for meal in meals %}
-            <h2>{{ meal.1 }}</h2>
-                {% for row in item_list %}
-                    {% if row.meal_type == meal.0 %}
-                        {% if row.status == 0 %}
-                            <a href="{% url 'menu_item' row.pk %}">
-                                <h3><del>{{ row.meal }}</del></h3>
-                            </a>
-                            <h5>{{ row.description }}</h5>
-                        {% else %}
-                            <a href="{% url 'menu_item' row.pk %}">
-                                <h3>{{ row.meal }}</h3>
-                            </a>
-                            <h5>{{ row.description }}</h5>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
+{% extends 'base.html' %}
+{% block content %}
+<h1>Restaurant Menu:</h1>
+{% for meal in meals %}
+    <h2>{{ meal.1 }}</h2>
+        {% for row in item_list %}
+            {% if row.meal_type == meal.0 %}
+                {% if row.status == 0 %}
+                    <a href="{% url 'menu_item' row.pk %}">
+                        <h3><del>{{ row.meal }}</del></h3>
+                    </a>
+                    <h5>{{ row.description }}</h5>
+                {% else %}
+                    <a href="{% url 'menu_item' row.pk %}">
+                        <h3>{{ row.meal }}</h3>
+                    </a>
+                    <h5>{{ row.description }}</h5>
+                {% endif %}
+            {% endif %}
         {% endfor %}
-    </body>
-</html>
+{% endfor %}
+{% endblock content %}
