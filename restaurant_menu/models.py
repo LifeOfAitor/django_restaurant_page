@@ -11,6 +11,8 @@ STATUS = (
     (0, "Unavailable"),
     (1, "Available")
 )
+
+
 class Item(models.Model):
     meal = models.CharField(max_length=500, unique=True)
     description = models.CharField(max_length=1000)
